@@ -8,7 +8,7 @@ var ADTSDemuxer = AV.Demuxer.extend(function() {
         var offset = stream.offset;
         
         // attempt to find ADTS syncword
-        while (stream.available(2)) {
+        if (stream.available(2)) {
             if ((stream.readUInt16() & 0xfff6) === 0xfff0) {
                 stream.seek(offset);
                 return true;
